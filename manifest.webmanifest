@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "ULTRON — Sistema de Disciplina e Controle",
+  "short_name": "ULTRON",
+  "description": "Sistema pessoal de disciplina, rotina e estudos.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#08090c",
+  "theme_color": "#090a0d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090a0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ULTRON">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="description" content="ULTRON — Sistema de Disciplina e Controle">
+<title>ULTRON — Sistema de Disciplina e Controle</title>
+<style>
+:root{--bg:#08090c;--panel:#111318;--panel2:#171a20;--line:#30343d;--red:#ef2638;--red2:#ff5966;--muted:#9298a4;--text:#edf0f4;--green:#9de0bd;--shadow:0 14px 40px #0008}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#48101855,transparent 45%),var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px,transparent 5px);mask-image:linear-gradient(to bottom,#000,transparent 65%)}
+header{position:sticky;top:0;z-index:5;background:#090a0deF;border-bottom:1px solid #76202a;backdrop-filter:blur(14px);padding:12px max(16px,calc((100vw - 1100px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}.sigil{width:42px;height:42px;border:1px solid var(--red);border-radius:10px;display:grid;place-items:center;color:var(--red);font-weight:900;font-size:20px;box-shadow:0 0 18px #ef263833,inset 0 0 14px #ef263822}
+.brand strong{letter-spacing:.18em;font-size:17px}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:.16em}
+.status{font-size:10px;color:#ff7a84;letter-spacing:.12em;text-align:right}.status:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-right:7px;box-shadow:0 0 9px var(--red)}
+main{max-width:1100px;margin:auto;padding:20px 16px 60px}.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:14px;margin:10px 0 16px}
+.panel{background:linear-gradient(145deg,#171a20,#0e1014);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.panel:after{content:"";position:absolute;top:0;left:0;width:70px;height:1px;background:var(--red);box-shadow:0 0 12px var(--red)}
+.eyebrow{font-size:10px;letter-spacing:.17em;color:var(--red2);font-weight:700}.clock{font-size:clamp(34px,7vw,58px);font-weight:300;letter-spacing:.06em;line-height:1.15;margin:7px 0}.date{color:var(--muted);text-transform:uppercase;font-size:11px;letter-spacing:.12em}
+.hero-right{display:flex;flex-direction:column;justify-content:space-between;gap:12px}.metric{font-size:34px;font-weight:700;color:var(--red2)}.metric small{font-size:12px;color:var(--muted);font-weight:500}.progress-track{height:9px;border-radius:20px;background:#292d35;overflow:hidden;margin:10px 0 5px}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#8d101e,var(--red2));box-shadow:0 0 14px #ef2638aa;transition:width .3s}
+.message{font-size:12px;color:#d6d9df;margin-top:10px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 2px 12px}.section-head h2{font-size:13px;letter-spacing:.16em;margin:0}.section-head span{color:var(--muted);font-size:10px;letter-spacing:.1em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.routine{display:grid;gap:10px}.group{border:1px solid var(--line);border-radius:12px;background:#111318;overflow:hidden}.group summary{list-style:none;cursor:pointer;padding:14px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(90deg,#1a1d24,#111318)}.group summary::-webkit-details-marker{display:none}.group summary b{font-size:12px;letter-spacing:.06em}.group summary small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.group-count{font-size:10px;color:var(--red2);white-space:nowrap}.task-list{padding:4px 14px 12px}.task{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #ffffff0c}.task:last-child{border:0}.task input{appearance:none;width:18px;height:18px;flex:none;border:1px solid #666d78;border-radius:5px;background:#0b0d11;margin:1px 0 0;cursor:pointer}.task input:checked{background:var(--red);border-color:var(--red);box-shadow:0 0 10px #ef263866}.task input:checked:after{content:"✓";display:block;text-align:center;color:white;font-weight:800;font-size:13px;line-height:16px}.task label{flex:1;cursor:pointer;color:#d9dce2;font-size:12px}.task.done label{text-decoration:line-through;color:#737985}.task .delete{border:0;background:none;color:#777;font-size:15px;cursor:pointer;padding:0 4px}.task .delete:hover{color:var(--red2)}
+button,.btn{border:1px solid #67303a;background:#211116;color:#f1dce0;padding:9px 12px;border-radius:8px;font:inherit;font-size:11px;letter-spacing:.04em;cursor:pointer;transition:.2s}button:hover,.btn:hover{border-color:var(--red);background:#35131a;box-shadow:0 0 14px #ef263822}button.primary{background:#a71929;border-color:#e83a4b;color:white}button.subtle{background:#15181e;border-color:var(--line);color:#c5c9d0}button:disabled{opacity:.45;cursor:not-allowed}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.day{padding:11px 5px;text-align:center;border:1px solid var(--line);border-radius:9px;background:#111318}.day b{display:block;font-size:10px;color:var(--muted)}.day span{display:block;font-size:11px;margin-top:4px}.day.today{border-color:var(--red);background:#2a1117;box-shadow:inset 0 0 18px #ef263818}.day.today b{color:var(--red2)}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px;margin-top:10px}.field label{font-size:10px;color:var(--muted);letter-spacing:.1em}.field input,.field textarea,.field select{width:100%;background:#090b0f;border:1px solid #363b45;border-radius:8px;color:var(--text);padding:10px;font:inherit;font-size:12px;outline:none}.field input:focus,.field textarea:focus{border-color:var(--red)}textarea{min-height:90px;resize:vertical}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.calendar-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.calendar-row input{background:#090b0f;border:1px solid var(--line);color:var(--text);padding:8px;border-radius:7px}
+.history{display:grid;gap:8px;max-height:230px;overflow:auto;margin-top:12px}.history-item{display:flex;justify-content:space-between;gap:10px;padding:9px 10px;background:#0b0d11;border:1px solid #292d35;border-radius:8px;font-size:11px}.history-item span{color:var(--muted)}
+.note{color:var(--muted);font-size:10px;margin-top:12px}.footer{text-align:center;color:#666d78;font-size:9px;letter-spacing:.18em;padding:30px 0 0}
+.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:18px;z-index:20}.modal.open{display:grid}.modal-card{width:min(420px,100%);background:#15181e;border:1px solid #73303a;border-radius:14px;padding:18px;box-shadow:0 20px 60px #000}.modal-card h3{margin:0 0 12px;font-size:14px;letter-spacing:.12em}.modal-card .field{margin-bottom:10px}
+@media(max-width:700px){.hero,.grid,.tools{grid-template-columns:1fr}.hero-right{display:grid;grid-template-columns:1fr 1fr}.week{gap:4px}.day{padding:9px 2px}.day span{font-size:9px}.section-head{margin-top:23px}.panel{padding:15px}header{padding:10px 14px}}
+@media print{body{background:white;color:#111}body:before,header,.actions,.delete,button,.calendar-row,.footer{display:none!important}main{padding:0;max-width:none}.panel,.group,.day{background:white;color:#111;box-shadow:none;border:1px solid #aaa;break-inside:avoid}.task label,.date,.message,.group summary small,.section-head span,.eyebrow{color:#222}.group summary{background:#eee}.task input{print-color-adjust:exact}.hero{grid-template-columns:1fr 1fr}.progress-track{border:1px solid #aaa}.section-head h2{color:#111}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="sigil">U</div><div><strong>ULTRON</strong><small>SISTEMA DE DISCIPLINA E CONTROLE</small></div></div><div class="status">SYSTEM ONLINE<br><span style="color:#777;font-size:9px">ALWAYS WATCHING. ALWAYS LEARNING.</span></div></header>
+<main>
+<section class="hero">
+ <div class="panel"><div class="eyebrow">ULTRON SYSTEM ONLINE</div><div class="clock" id="clock">--:--:--</div><div class="date" id="dateText">SINCRONIZANDO DATA</div><div class="message" id="systemMessage">SISTEMA INICIALIZADO.</div></div>
+ <div class="panel hero-right"><div><div class="eyebrow">PROTOCOLO DIÁRIO</div><div class="metric"><span id="percent">0</span><small>% CONCLUÍDO</small></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><div class="date"><span id="doneCount">0</span> / <span id="totalCount">0</span> TAREFAS EXECUTADAS</div></div><div><div class="eyebrow">STATUS DO SISTEMA</div><div style="font-size:12px;margin-top:7px">● <span style="color:var(--green)">OPERACIONAL</span></div><div class="date" style="margin-top:5px">CONSISTÊNCIA ACIMA DA PERFEIÇÃO.</div></div></div>
+</section>
+
+<div class="section-head"><h2>01 / PROTOCOLO DIÁRIO</h2><span id="selectedDateLabel">HOJE</span></div>
+<div class="calendar-row"><label class="date">DATA OPERACIONAL</label><input type="date" id="datePicker"><button class="subtle" id="todayBtn">Voltar para hoje</button></div>
+<div class="routine" id="routine"></div>
+
+<div class="section-head"><h2>02 / CENTRAL DE ESTUDOS</h2><span>GRADE SEMANAL</span></div>
+<div class="panel"><div class="week" id="week"></div><div class="message" id="studyToday"></div></div>
+
+<div class="section-head"><h2>03 / REGISTROS DO SISTEMA</h2><span>METAS E OBSERVAÇÕES</span></div>
+<div class="tools">
+ <div class="panel"><div class="eyebrow">META DIÁRIA</div><div class="field"><label for="goal">OBJETIVO PRINCIPAL</label><input id="goal" placeholder="Defina o objetivo de hoje..."></div><div class="field"><label for="notes">OBSERVAÇÕES PESSOAIS</label><textarea id="notes" placeholder="Registre informações importantes..."></textarea></div><div class="actions"><button class="primary" id="saveNotes">Salvar registros</button></div></div>
+ <div class="panel"><div class="eyebrow">HISTÓRICO DE EXECUÇÃO</div><div class="calendar-row" style="margin-top:12px"><span class="date">REGISTROS SALVOS AUTOMATICAMENTE</span></div><div class="history" id="history"></div><div class="note">O histórico registra o progresso de cada data consultada neste dispositivo.</div></div>
+</div>
+
+<div class="section-head"><h2>04 / CONFIGURAÇÕES</h2><span>CONTROLE DO SISTEMA</span></div>
+<div class="panel"><div class="actions"><button class="primary" id="addTask">＋ Adicionar tarefa</button><button id="resetDay">Reiniciar rotina do dia</button><button class="subtle" id="print">Imprimir / salvar PDF</button></div><div class="note">Os dados são armazenados localmente neste navegador. Limpar os dados do navegador pode apagar o histórico.</div></div>
+<div class="footer">ULTRON // DISCIPLINA • PRECISÃO • EXECUÇÃO</div>
+</main>
+<div class="modal" id="taskModal"><div class="modal-card"><h3 id="modalTitle">NOVA TAREFA</h3><div class="field"><label for="taskName">DESCRIÇÃO</label><input id="taskName" maxlength="90" placeholder="Descreva a tarefa"></div><div class="field"><label for="taskGroup">BLOCO DA ROTINA</label><select id="taskGroup"></select></div><div class="actions"><button class="primary" id="confirmTask">Salvar tarefa</button><button class="subtle" id="cancelTask">Cancelar</button></div></div></div>
+<script>
+const baseGroups=[
+["06:30","INÍCIO DO DIA",["Acordar.","Arrumar a cama.","Fazer higiene pessoal.","Tomar café da manhã."]],
+["07:00 – 08:00","RESPONSABILIDADES DOMÉSTICAS",["Arrumar o quarto.","Lavar a louça.","Varrer a casa.","Organizar a cozinha.","Organizar os demais ambientes.","Realizar outras obrigações domésticas."]],
+["08:00 – 08:15","PAUSA",["Descansar.","Beber água."]],
+["08:15 – 09:00","TREINAMENTO FÍSICO",["Fazer aquecimento.","Realizar treino em casa.","Fazer mobilidade e alongamento."]],
+["09:00 – 09:30","RECUPERAÇÃO",["Tomar banho.","Fazer uma refeição ou lanche.","Descansar."]],
+["09:30 – 10:30","DESENVOLVIMENTO INTELECTUAL",["Estudar por uma hora.","Revisar conteúdos.","Resolver exercícios.","Aprender algo novo."]],
+["10:30 – 11:15","TEMPO DE QUALIDADE",["Ler ou ouvir música.","Jogar ou praticar um hobby.","Conversar com pessoas importantes.","Ter um momento de descanso."]],
+["11:15 – 12:00","ALMOÇO E PREPARAÇÃO",["Almoçar.","Organizar a mochila.","Separar materiais.","Trocar de roupa."]],
+["12:00 – 13:00","PREPARAÇÃO FINAL",["Conferir os pertences.","Preparar-se para sair.","Sair de casa às 13:00."]],
+["13:00 – 20:00","ESCOLA",["Comparecer às aulas.","Prestar atenção.","Registrar tarefas e atividades.","Fazer as refeições necessárias."]],
+["20:00 – 20:45","RETORNO",["Chegar em casa.","Jantar.","Conversar com a família."]],
+["20:45 – 21:15","ORGANIZAÇÃO",["Organizar a mochila.","Separar as roupas do dia seguinte.","Organizar o ambiente.","Fazer higiene noturna."]],
+["21:15 – 22:00","TEMPO LIVRE",["Relaxar.","Reduzir o uso de telas.","Preparar-se para dormir."]],
+["22:00","DESCANSO",["Dormir no horário programado."]]
+];
+const study=["Matemática","Português","Ciências","História e Geografia","Revisão geral","Assuntos de interesse pessoal","Descanso"];
+const dayNames=["DOM","SEG","TER","QUA","QUI","SEX","SÁB"];
+const STORE="ultron_discipline_v1";
+let db=load(), selected=localDate(), editing=null;
+function load(){try{return JSON.parse(localStorage.getItem(STORE))||{days:{},custom:[]}}catch(e){return {days:{},custom:[]}}}
+function persist(){localStorage.setItem(STORE,JSON.stringify(db))}
+function localDate(d=new Date()){let y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");return `${y}-${m}-${day}`}
+function record(date=selected){if(!db.days[date])db.days[date]={checks:{},goal:"",notes:""};return db.days[date]}
+function allGroups(){return baseGroups.map((g,i)=>({time:g[0],name:g[1],tasks:g[2].map((t,j)=>({id:`b${i}_${j}`,text:t,custom:false}))})).concat(db.custom.map(t=>({time:"PERSONALIZADAS",name:t.group,tasks:[{id:t.id,text:t.text,custom:true}]})))}
+function render(){
+ const data=record(),groups=allGroups(),tasks=groups.flatMap(g=>g.tasks),done=tasks.filter(t=>data.checks[t.id]).length,total=tasks.length,pct=total?Math.round(done/total*100):0;
+ document.getElementById("percent").textContent=pct;document.getElementById("progressFill").style.width=pct+"%";document.getElementById("doneCount").textContent=done;document.getElementById("totalCount").textContent=total;
+ document.getElementById("selectedDateLabel").textContent=selected===localDate()?"HOJE":new Date(selected+"T12:00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"}).toUpperCase();
+ let msg=pct===100?"PROTOCOLO DIÁRIO FINALIZADO.":pct>=70?"EXECUÇÃO AVANÇADA. MANTENHA A CONSISTÊNCIA.":pct>0?"ANÁLISE CONCLUÍDA. EXISTEM TAREFAS PENDENTES.":"SISTEMA INICIALIZADO. EXECUTE SUAS TAREFAS.";
+ document.getElementById("systemMessage").textContent=msg;
+ document.getElementById("routine").innerHTML=groups.map((g,idx)=>{let n=g.tasks.filter(t=>data.checks[t.id]).length;return `<details class="group" ${idx<2?"open":""}><summary><div><b>${esc(g.name)}</b><small>${esc(g.time)}</small></div><span class="group-count">${n}/${g.tasks.length} CONCLUÍDAS　⌄</span></summary><div class="task-list">${g.tasks.map(t=>`<div class="task ${data.checks[t.id]?"done":""}"><input type="checkbox" id="c_${t.id}" data-id="${t.id}" ${data.checks[t.id]?"checked":""}><label for="c_${t.id}">${esc(t.text)}</label>${t.custom?`<button class="delete" title="Editar tarefa" data-edit="${t.id}">✎</button><button class="delete" title="Excluir tarefa" data-del="${t.id}">×</button>`:""}</div>`).join("")}</div></details>`}).join("");
+ document.querySelectorAll("#routine input[type=checkbox]").forEach(el=>el.addEventListener("change",()=>{data.checks[el.dataset.id]=el.checked;persist();render()}));
+ document.querySelectorAll("[data-del]").forEach(el=>el.addEventListener("click",()=>{if(confirm("Excluir esta tarefa personalizada?")){db.custom=db.custom.filter(t=>t.id!==el.dataset.del);delete data.checks[el.dataset.del];persist();render()}}));
+ document.querySelectorAll("[data-edit]").forEach(el=>el.addEventListener("click",()=>openEdit(el.dataset.edit)));
+ document.getElementById("goal").value=data.goal||"";document.getElementById("notes").value=data.notes||"";
+ renderHistory();renderWeek();
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderWeek(){let now=new Date(),today=now.getDay();document.getElementById("week").innerHTML=dayNames.map((d,i)=>`<div class="day ${i===today?"today":""}"><b>${d}</b><span>${study[(i+6)%7]}</span></div>`).join("");document.getElementById("studyToday").textContent="CONTEÚDO DO DIA: "+study[(today+6)%7].toUpperCase()+(today===0?" — DIA RESERVADO AO DESCANSO.":" — EXECUÇÃO PREVISTA NA ROTINA DE ESTUDOS.");}
+function renderHistory(){let dates=Object.keys(db.days).sort().reverse().slice(0,12);document.getElementById("history").innerHTML=dates.length?dates.map(d=>{let g=allGroups(),ts=g.flatMap(x=>x.tasks),r=db.days[d],n=ts.filter(t=>r.checks&&r.checks[t.id]).length,p=ts.length?Math.round(n/ts.length*100):0;return `<div class="history-item"><b>${new Date(d+"T12:00:00").toLocaleDateString("pt-BR")}</b><span>${p}% · ${n}/${ts.length} tarefas</span></div>`}).join(""):'<div class="note">Nenhum registro disponível.</div>'}
+function tick(){let d=new Date();document.getElementById("clock").textContent=d.toLocaleTimeString("pt-BR");document.getElementById("dateText").textContent=d.toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"long",year:"numeric"}).toUpperCase()}
+document.getElementById("datePicker").value=selected;document.getElementById("datePicker").addEventListener("change",e=>{if(e.target.value){selected=e.target.value;render()}});
+document.getElementById("todayBtn").onclick=()=>{selected=localDate();document.getElementById("datePicker").value=selected;render()};
+document.getElementById("saveNotes").onclick=()=>{let r=record();r.goal=document.getElementById("goal").value;r.notes=document.getElementById("notes").value;persist();renderHistory();alert("Registros armazenados.")};
+document.getElementById("print").onclick=()=>window.print();
+document.getElementById("resetDay").onclick=()=>{if(confirm("Reiniciar as marcações da rotina desta data? Metas e observações serão preservadas.")){record().checks={};persist();render()}};
+const modal=document.getElementById("taskModal"),nameInput=document.getElementById("taskName"),groupSelect=document.getElementById("taskGroup");
+function showModal(){groupSelect.innerHTML=baseGroups.map(g=>`<option>${esc(g[1])}</option>`).join("")+`<option>OUTRAS TAREFAS</option>`;modal.classList.add("open");nameInput.focus()}
+function openEdit(id){let t=db.custom.find(x=>x.id===id);if(!t)return;editing=id;document.getElementById("modalTitle").textContent="EDITAR TAREFA";nameInput.value=t.text;showModal();groupSelect.value=t.group}
+document.getElementById("addTask").onclick=()=>{editing=null;document.getElementById("modalTitle").textContent="NOVA TAREFA";nameInput.value="";showModal()};
+document.getElementById("cancelTask").onclick=()=>modal.classList.remove("open");
+document.getElementById("confirmTask").onclick=()=>{let text=nameInput.value.trim(),group=groupSelect.value;if(!text){nameInput.focus();return}if(editing){let t=db.custom.find(x=>x.id===editing);if(t){t.text=text;t.group=group}}else db.custom.push({id:"x"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),text,group});persist();modal.classList.remove("open");render()};
+modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")modal.classList.remove("open")});
+tick();setInterval(tick,1000);render();
+</script>
+
+<script>
+/* Registro do modo offline: exige HTTPS ou localhost. */
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {
+      console.warn("ULTRON: não foi possível ativar o modo offline neste endereço.");
+    });
+  });
+}
+</script>
+
+</body></html>
